@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace game
+namespace Game
 {
     public enum Color
     {
@@ -14,37 +14,105 @@ namespace game
 
     public enum FigureRank
     {
-        KING = 0,
-        QUEEN = 1,
-        ROOT = 2,
-        BISHOP = 3,
-        JEZDEC = 4,
-        PAWN = 5
+        KING = 5,
+        QUEEN = 4,
+        ROOK = 3,
+        BISHOP = 2,
+        KNIGHT = 1,
+        PAWN = 0
     }
 
     public class Position
     {
-        int x;
-        int y;
+        public int x;
+        public int y;
+
+        public override string ToString()
+        {
+            string str = "";
+            str += Position.toLetterNotation(this.x);
+            str += this.y;
+            return str;
+        }
+
+        public static char toLetterNotation(int posX)
+        {
+            int first = (int)'a';
+            return (char)(first + posX);
+        }
+
+        public static int toIntegerNotation(char letter)
+        {
+            int first = (int)'a';
+            int index = (int)letter - first;
+            return index;
+        }
     }
 
     public abstract class ChessFigure
     {
         protected Color _color;
-        protected FigureRank _rank;
-        protected Position _position;
+        protected Position _position = new Position();
 
-        public abstract Position calcBestMove(ChessBoard board);
-    }
-
-    public class King : ChessFigure
-    {
-        public override Position calcBestMove(ChessBoard board)
+        public Color Color
         {
-            throw new NotImplementedException();
+            get { return _color; }
+            set { _color = value; }
         }
-    }
+        public Position Position
+        {
+          get { return _position; }
+          set { _position = value; }
+        }
 
+        public abstract FigureRank getRank();
+
+        /// <summary>
+        /// Calculate best possible move (if not possible to move, return current position).
+        /// The best move is defined by the possible capture of the highest rank figure.
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
+        public abstract Position calcBestMove(ChessBoard board);
+
+        public override string ToString()
+        {
+            string str;
+            string rankstr = "";
+
+            switch(getRank())
+            {
+                case FigureRank.KING:
+                    rankstr = "K";
+                    break;
+
+                case FigureRank.QUEEN:
+                    rankstr = "Q";
+                    break;
+
+                case FigureRank.BISHOP:
+                    rankstr = "B";
+                    break;
+
+                case FigureRank.ROOK:
+                    rankstr = "R";
+                    break;
+
+                case FigureRank.KNIGHT:
+                    rankstr = "N";
+                    break;
+
+                case FigureRank.PAWN:
+                    rankstr = "P";
+                    break;
+            }
+
+            str = _color == Color.WHITE ? rankstr.ToUpper() : rankstr.ToLower();
+            str += Position.ToString();
+            return str;
+        }
+
+    }
 
 
 
