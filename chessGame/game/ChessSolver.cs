@@ -23,10 +23,10 @@ namespace Game
                 {
                     Utility.Logger.INSTANCE().log(fig.ToString() + ", ERROR - unable to move at all" );
                 }
-                else if(null == board.getFigure(fig.Position.x, fig.Position.y)) // no figure
+                else if (null == board.getFigure(newPos.x, newPos.y)) // no figure
                 {
                     Utility.Logger.INSTANCE().log(fig.ToString() + ", " + newPos.ToString() + 
-                                                  "no capture, chosen whatever");
+                                                  ", no capture, chosen whatever");
                 }
                 else// captured new figure
                 {
@@ -34,7 +34,7 @@ namespace Game
                     //  - check whether correct figure?
 
                     Utility.Logger.INSTANCE().log(fig.ToString() + ", " + newPos.ToString() +
-                                                  "captured");
+                                                  ", captured");
                 }
 
             }

@@ -27,11 +27,45 @@ namespace Game
         public int x;
         public int y;
 
+        public Position() { }
+
+        public Position(Position newPos)
+        {
+            this.x = newPos.x;
+            this.y = newPos.y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var eqTo = obj as Position;
+ 	        return (eqTo.x == this.x && eqTo.y == this.y);
+        }
+
+        // Change default implementation in case of usage as Keys 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public static bool operator == (Position lhs, Position rhs)
+        {
+            if (object.ReferenceEquals(lhs, null))
+            {
+                return object.ReferenceEquals(rhs, null);
+            }
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(Position lhs, Position rhs)
+        {
+            return !(lhs == rhs);
+        }
+
         public override string ToString()
         {
             string str = "";
             str += Position.toLetterNotation(this.x);
-            str += this.y;
+            str += this.y + 1;
             return str;
         }
 

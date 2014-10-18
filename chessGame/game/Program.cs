@@ -22,8 +22,8 @@ namespace Game
 
             try
             {
-                string line;
                 // Load figures from the file
+                string line;
                 System.IO.StreamReader reader = new System.IO.StreamReader(fileName);
                 while ((line = reader.ReadLine()) != null)
                 {
@@ -37,14 +37,13 @@ namespace Game
                     }
                 }
 
+                // create chess position
                 newBoard.createPosition(figures);
 
 
                 // Solve problem
                 IChessSolver solver = new ChessSolverSimple();
                 solver.solveProblem(newBoard);
-
-                
 
             }
             catch(System.IO.IOException)

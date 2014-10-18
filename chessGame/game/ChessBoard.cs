@@ -20,10 +20,32 @@ namespace Game
         }
 
 
-        public bool setFigure(ChessFigure fig)
+        private bool setFigure(ChessFigure fig)
         {
+            // TODO:
+            // Check whether it is possible to add Figure with given location
+            // i.e. Pawn not on the first or last row, etc.
+
             _board[fig.Position.x, fig.Position.y] = fig;
             return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="outOfBound"></param>
+        /// <returns>Figure if associated with given coordinates, otherwise returns null</returns>
+        public ChessFigure getFigure(int x, int y, out bool outOfBound)
+        {
+            if (x >= 0 && x < 8 && y >= 0 && y < 8)
+            {
+                outOfBound = false;
+                return this._board[x, y];
+            }
+            outOfBound = true;
+            return null;
         }
 
         /// <summary>
@@ -38,7 +60,7 @@ namespace Game
             {
                 return this._board[x, y];
             }
-            return null;
+            throw new IndexOutOfRangeException("accessing index: [" + x + " , " + y + "]");
         }
 
         public void createPosition(List<ChessFigure> figures)

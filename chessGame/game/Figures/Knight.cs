@@ -15,7 +15,11 @@ namespace Game.Figures
 
         public override Position calcBestMove(ChessBoard board)
         {
-            throw new NotImplementedException();
+
+
+
+
+            return this.Position;
         }
     }
 }

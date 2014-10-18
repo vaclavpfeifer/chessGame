@@ -54,7 +54,7 @@ namespace Game
             }
 
             figure.Position.x = Position.toIntegerNotation(str[1]);
-            figure.Position.y = str[2] - '0';
+            figure.Position.y = str[2] - '0' - 1;
             return figure;
         }
 
