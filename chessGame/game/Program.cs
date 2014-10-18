@@ -11,6 +11,9 @@ namespace game
         static void Main(string[] args)
         {
             Console.WriteLine("Hello worold!");
+
+            ChessBoard newBoard = new ChessBoard();
+
             Console.ReadKey();
         }
 
