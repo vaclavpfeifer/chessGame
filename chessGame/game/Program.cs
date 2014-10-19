@@ -15,9 +15,9 @@ namespace Game
             List<ChessFigure> figures = new List<ChessFigure>();
             string fileName = "";
 
-            if (args.Length == 2)
+            if (args.Length > 0)
             {
-                fileName = args[1];
+                fileName = args[0];
             }
             else
             {
