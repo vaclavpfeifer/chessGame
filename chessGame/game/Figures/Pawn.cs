@@ -20,8 +20,10 @@ namespace Game.Figures
             ChessFigure captFigure = null;
             bool outOfBound = false;
 
-            // check left sife
-            ChessFigure fig = board.getFigure(Position.x + 1, Position.y + 1, out outOfBound);
+            int yIncr = this.Color == Color.WHITE ? 1 : -1;
+
+            // check right side            
+            ChessFigure fig = board.getFigure(Position.x + 1, Position.y + yIncr, out outOfBound);
             if(null != fig)
             {
                 if(fig.Color != this.Color)
@@ -30,8 +32,8 @@ namespace Game.Figures
                 }
             }
 
-            // check right sife
-            fig = board.getFigure(Position.x - 1, Position.y + 1, out outOfBound);
+            // check let side
+            fig = board.getFigure(Position.x - 1, Position.y + yIncr, out outOfBound);
             if (null != fig)
             {
                 // Must be oposite color with higher rank
@@ -51,29 +53,12 @@ namespace Game.Figures
             // TODO:
             //  - En passant
 
-
-
-            // Check for move
-            if(Color.WHITE == this.Color)
+            if (null == (fig = board.getFigure(Position.x, Position.y + yIncr, out outOfBound)))
             {
-                if(null == (fig = board.getFigure(Position.x, Position.y + 1, out outOfBound)))
+                if (!outOfBound)
                 {
-                    if (!outOfBound)
-                    {
-                        newMove.x = Position.x;
-                        newMove.y = Position.y + 1;
-                    }
-                }
-            }
-            else
-            {
-                if (null == (fig = board.getFigure(Position.x, Position.y - 1, out outOfBound)))
-                {
-                    if (!outOfBound)
-                    {
-                        newMove.x = Position.x;
-                        newMove.y = Position.y - 1;
-                    }
+                    newMove.x = Position.x;
+                    newMove.y = Position.y + yIncr;
                 }
             }
 

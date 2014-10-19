@@ -13,11 +13,21 @@ namespace Game
             Console.WriteLine("The game has begun!");
             ChessBoard newBoard = new ChessBoard();
             List<ChessFigure> figures = new List<ChessFigure>();
+            string fileName = "";
+
+            if (args.Length == 2)
+            {
+                fileName = args[1];
+            }
+            else
+            {
+                fileName = ".\\testInput.txt";
+            }
 
             // TODO:
-            //  - change to accept input parameter!
-            string fileName = ".\\input.txt";
+            //  - remove suffix (.txt)
 
+            // Set output file name
             Utility.Logger.INSTANCE().FileName = fileName + ".out";
 
             try
@@ -40,6 +50,7 @@ namespace Game
                 // create chess position
                 newBoard.createPosition(figures);
 
+                Console.WriteLine(newBoard);
 
                 // Solve problem
                 IChessSolver solver = new ChessSolverSimple();

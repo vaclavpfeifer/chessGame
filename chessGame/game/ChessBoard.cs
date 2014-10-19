@@ -80,5 +80,34 @@ namespace Game
             _board = new ChessFigure[8, 8];
         }
 
+
+
+
+        public override string ToString()
+        {
+            string str = "";
+
+            for (int y = 7; y >= 0; y--)
+            {
+                str += y + 1;
+                for (int x = 0; x < 8; x++)
+                {
+                    var fig = getFigure(x,y);
+                    if(null == fig)
+                    {
+                        str += "0";
+                    }
+                    else
+                    {
+                        str += fig.ToString()[0];
+                    }
+                }
+                str += "\n";
+            }
+            str += "xabcdefgh\n";
+
+            return str;
+        }// ToString
+
     }
 }

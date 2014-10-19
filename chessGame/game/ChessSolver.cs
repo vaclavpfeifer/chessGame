@@ -15,6 +15,7 @@ namespace Game
     {
         void IChessSolver.solveProblem(ChessBoard board)
         {
+            // Calculate best move for each active figure on the board
             foreach(var fig in board.ActiveFigures)
             {
                 Position newPos = fig.calcBestMove(board);
@@ -30,9 +31,6 @@ namespace Game
                 }
                 else// captured new figure
                 {
-                    // TODO:
-                    //  - check whether correct figure?
-
                     Utility.Logger.INSTANCE().log(fig.ToString() + ", " + newPos.ToString() +
                                                   ", captured");
                 }

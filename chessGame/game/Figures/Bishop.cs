@@ -21,7 +21,7 @@ namespace Game.Figures
 
             int xIncr = 1;
             int yIncr = 1;
-            // Left Upper quadrant
+            // Right Upper quadrant
             while (!outOfBound)
             {
                 ChessFigure fig = board.getFigure(Position.x + xIncr, 
@@ -48,7 +48,7 @@ namespace Game.Figures
                 yIncr++;
             }
 
-            // Left bottom quadrant
+            // Right bottom quadrant
             xIncr = 1;
             yIncr = 1;
             outOfBound = false;
@@ -85,7 +85,7 @@ namespace Game.Figures
                 yIncr++;
             }
 
-            // Right upper quadrant
+            // Left upper quadrant
             xIncr = 1;
             yIncr = 1;
             outOfBound = false;
@@ -122,7 +122,7 @@ namespace Game.Figures
                 yIncr++;
             }
 
-            // Right bottom quadrant
+            // Left bottom quadrant
             xIncr = 1;
             yIncr = 1;
             outOfBound = false;

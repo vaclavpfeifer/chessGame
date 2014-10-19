@@ -12,6 +12,8 @@ namespace Game
         {
             private static Logger _instance;
             private string _fileName = "default.log";
+            private static bool _createNewFile = true;
+
 
             public string FileName
             {
@@ -35,6 +37,23 @@ namespace Game
                 Console.WriteLine(msg);
 
                 // Add write to log
+                if(_createNewFile)
+                {
+                    using (var writer = new System.IO.StreamWriter(_fileName, false))
+                    {
+                        writer.WriteLine(msg);
+                        _createNewFile = false;
+                    }                    
+                }
+                else
+                {
+                    using (var writer = new System.IO.StreamWriter(_fileName, true))
+                    {
+                        writer.WriteLine(msg);
+                    }    
+                }
+
+
             }
 
         }
