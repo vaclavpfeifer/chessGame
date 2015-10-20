@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Game
 {
+    // test
+
     public class ChessBoard
     {
         private ChessFigure[,] _board = new ChessFigure[8,8];
